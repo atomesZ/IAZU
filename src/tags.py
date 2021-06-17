@@ -34,22 +34,8 @@ def match_tags(tag_list, db_tag):
 
     return inbrefID
 
-def get_answers_alike(tag_list):
-    
-    # RIP RAM
-    # Can and should be improved
-
-    data_path = './data/'
-
-    try :
-        pd_tags = pd.read_csv(data_path + 'Tags.csv')
-        pd_answ = pd.read_csv(data_path + 'Answers.csv')
-        pd_qst = pd.read_csv(data_path + 'Questions.csv')
-    
-    except OSError:
-        print("Could not open Tags.csv, Questions.csv or Answers.csv check if thoses files are in the good directory.")
-        return
-    
+def get_answers_alike(tag_list, pd_tags, pd_answ, pd_qst):
+ 
     # Make an dictionary compiling all the ids in the db of Tags that matches thoses computed with LUIS
     matched_ids = match_tags(tag_list,pd_tags)
     

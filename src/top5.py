@@ -20,7 +20,7 @@ def get_json_from_query(query):
 
 
 
-def get_top5(query):
+def get_top5(query, pd_tags, pd_answ, pd_qst):
 
     json_data = get_json_from_query(query)
 
@@ -30,4 +30,4 @@ def get_top5(query):
     print("tag list:", tag_list)
     print("\n\n#################\n\n")
 
-    return get_answers_alike(tag_list)
+    return get_answers_alike(tag_list, pd_tags, pd_answ, pd_qst)
