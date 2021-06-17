@@ -1,0 +1,6 @@
+.dockerignore
+Dockerfile
+
+__pycache__/
+env/
+cherry_server.sh
