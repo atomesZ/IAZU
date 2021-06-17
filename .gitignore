@@ -9,3 +9,5 @@ container_mount_point/output/*
 data/
 __pycache__/
 env/
+docker-compose.yml
+luis-variables.env

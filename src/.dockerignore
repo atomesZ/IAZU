@@ -4,3 +4,5 @@ Dockerfile
 __pycache__/
 env/
 cherry_server.sh
+luis-variables.env
+docker-compose.yml
