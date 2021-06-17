@@ -1,8 +1,11 @@
 import requests
 import json
+import pandas as pd
+
+from collections import Counter
 
 #avoid the docker setting up by doing so
-json_data ={'query': '"How can I generate conditional distributions of data by taking slices of scatterplots?"', 'prediction': {'topIntent': 'plot', 'intents': {'plot': {'score': 0.9788371}}, 'entities': {'data': [{}], 'plots': [{'plot type': [{'scatterplot': ['scatterplots'], '$instance': {'scatterplot': [{'type': 'scatterplot', 'text': 'scatterplots', 'startIndex': 74, 'length': 12, 'score': 0.9501133, 'modelTypeId': 1, 'modelType': 'Entity Extractor', 'recognitionSources': ['model']}]}}], '$instance': {'plot type': [{'type': 'plot type', 'text': 'scatterplots', 'startIndex': 74, 'length': 12, 'score': 0.9486826, 'modelTypeId': 1, 'modelType': 'Entity Extractor', 'recognitionSources': ['model']}]}}], 'action': [{'make': ['generate'], '$instance': {'make': [{'type': 'make', 'text': 'generate', 'startIndex': 11, 'length': 8, 'score': 0.9749215, 'modelTypeId': 1, 'modelType': 'Entity Extractor', 'recognitionSources': ['model']}]}}], '$instance': {'data': [{'type': 'data', 'text': 'data', 'startIndex': 49, 'length': 4, 'score': 0.9762081, 'modelTypeId': 1, 'modelType': 'Entity Extractor', 'recognitionSources': ['model']}], 'plots': [{'type': 'plots', 'text': 'scatterplots', 'startIndex': 74, 'length': 12, 'score': 0.9448885, 'modelTypeId': 1, 'modelType': 'Entity Extractor', 'recognitionSources': ['model']}], 'action': [{'type': 'action', 'text': 'generate', 'startIndex': 11, 'length': 8, 'score': 0.974810064, 'modelTypeId': 1, 'modelType': 'Entity Extractor', 'recognitionSources': ['model']}]}}}} 
+#json_data ={'query': '"How can I generate conditional distributions of data by taking slices of scatterplots?"', 'prediction': {'topIntent': 'plot', 'intents': {'plot': {'score': 0.9788371}}, 'entities': {'data': [{}], 'plots': [{'plot type': [{'scatterplot': ['scatterplots'], '$instance': {'scatterplot': [{'type': 'scatterplot', 'text': 'scatterplots', 'startIndex': 74, 'length': 12, 'score': 0.9501133, 'modelTypeId': 1, 'modelType': 'Entity Extractor', 'recognitionSources': ['model']}]}}], '$instance': {'plot type': [{'type': 'plot type', 'text': 'scatterplots', 'startIndex': 74, 'length': 12, 'score': 0.9486826, 'modelTypeId': 1, 'modelType': 'Entity Extractor', 'recognitionSources': ['model']}]}}], 'action': [{'make': ['generate'], '$instance': {'make': [{'type': 'make', 'text': 'generate', 'startIndex': 11, 'length': 8, 'score': 0.9749215, 'modelTypeId': 1, 'modelType': 'Entity Extractor', 'recognitionSources': ['model']}]}}], '$instance': {'data': [{'type': 'data', 'text': 'data', 'startIndex': 49, 'length': 4, 'score': 0.9762081, 'modelTypeId': 1, 'modelType': 'Entity Extractor', 'recognitionSources': ['model']}], 'plots': [{'type': 'plots', 'text': 'scatterplots', 'startIndex': 74, 'length': 12, 'score': 0.9448885, 'modelTypeId': 1, 'modelType': 'Entity Extractor', 'recognitionSources': ['model']}], 'action': [{'type': 'action', 'text': 'generate', 'startIndex': 11, 'length': 8, 'score': 0.974810064, 'modelTypeId': 1, 'modelType': 'Entity Extractor', 'recognitionSources': ['model']}]}}}} 
 
 def get_tags(json_data):
     """
@@ -37,13 +40,16 @@ def get_answers_alike(tag_list):
     
     # RIP RAM
     # Can and should be improved
+
+    data_path = '../data/'
+
     try :
-        pd_tags = pd.read_csv('Tags.csv')
-        pd_answ = pd.read_csv('Answers.csv')
-        pd_qst = pd.read_csv('Questions.csv')
+        pd_tags = pd.read_csv(data_path + 'Tags.csv')
+        pd_answ = pd.read_csv(data_path + 'Answers.csv')
+        pd_qst = pd.read_csv(data_path + 'Questions.csv')
     
     except OSError:
-        print("Could not open Tags.csv, Questions.csv or Answers.csv check if thoses files are in the working directory.")
+        print("Could not open Tags.csv, Questions.csv or Answers.csv check if thoses files are in the good directory.")
         return
     
     # Make an dictionary compiling all the ids in the db of Tags that matches thoses computed with LUIS

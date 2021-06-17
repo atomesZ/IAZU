@@ -6,3 +6,6 @@ tp1
 481300a9-e5c5-49ac-a6ea-20f1c037393d_vmerge_trial.tar.gz
 project/*.csv
 container_mount_point/output/*
+data/
+__pycache__/
+env/

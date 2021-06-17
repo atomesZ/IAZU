@@ -1,0 +1,11 @@
+load the luis server:
+    API_KEY="xxxxxxxxxxxxxxxxxxxxxxx" ./load_container.sh
+
+
+cd src
+
+install dependencies:
+    pip install -r requirements.txt
+
+load our service:
+    python3 server.py

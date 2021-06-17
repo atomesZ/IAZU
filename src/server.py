@@ -1,5 +1,7 @@
 import cherrypy
 
+from top5 import get_top5
+
 class QuestionR(object):
     def index(self):
         # Formulaire demandant son nom à l'utilisateur :
@@ -16,7 +18,20 @@ class QuestionR(object):
         if reponses:
             #on balance aux autres
             print(reponses)
-            res = '<p>You that is possible. You could use:</p>\n\n<ul>\n<li><a href="https://rstudio.github.io/DT/shiny.html" rel="nofollow noreferrer">DT for interactive tables, see section 2.</a></li>\n<li><a href="https://plot.ly/r/shiny-coupled-events/" rel="nofollow noreferrer">plotly_selected or plotly_click for interactive charts</a></li>\n</ul>\n\n<p>You could then use <a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" rel="nofollow noreferrer">observeEvents</a> to listen to these actions, and make your application act accordingly.</p>\n\n<p>Hope this helps you in the right direction.</p>\ni'
+
+            # get the 2 lists
+            matched_answ, matched_qst = get_top5(reponses)
+
+            separator = "<br><br>#############################################<br><br>"
+            
+            res = ""
+
+            for answ, qst in zip(matched_answ, matched_qst):
+                res += "<h1>Question:</h1><br>" + qst + "<br><br><h1>Answer:</h1>" + answ + separator
+
+            if res == "":
+                res = '<iframe width="1600" height="900" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+
             #on récupère les réponses
             return res
         else:    # Aucun nom n'a été fourni :
