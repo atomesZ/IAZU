@@ -2,20 +2,28 @@ import cherrypy
 import pandas as pd
 
 from top5 import get_top5
+from generate_tags_luis import generate_luis_tags
+
 
 data_path = './data/'
 
 try :
-    pd_tags = pd.read_csv(data_path + 'Tags.csv')
+    pd_tags = pd.read_csv(data_path + 'my_created_tags.csv')
     pd_answ = pd.read_csv(data_path + 'Answers.csv')
     pd_qst = pd.read_csv(data_path + 'Questions.csv')
     
 except OSError:
     print("Could not open Tags.csv, Questions.csv or Answers.csv check if thoses files are in the good directory.")
 
+
+
+#db_questions_short = pd_qst.head(500)
+
+#pd_tags = generate_luis_tags(db_questions_short)
+
+#pd_tags.to_csv("my_created_tags.csv", index=False)
+
 class QuestionR(object):
-
-
 
     def index(self):
         # Formulaire demandant sa query à l'utilisateur :

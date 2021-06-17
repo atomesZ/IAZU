@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ENDPOINT_URI="https://iazu2.cognitiveservices.azure.com/"
+ENDPOINT_URI="https://westus.api.cognitive.microsoft.com/"
 
 MOUNT_DIR="$(pwd)/container_mount_point"
 
