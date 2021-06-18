@@ -6,3 +6,4 @@ env/
 cherry_server.sh
 luis-variables.env
 docker-compose.yml
+build_and_push.sh

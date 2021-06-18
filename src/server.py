@@ -52,7 +52,7 @@ class QuestionR(object):
                 res += "<h1>Question:</h1><br>" + qst + "<br><br><h1>Answer:</h1>" + answ + separator
 
             if res == "":
-                res = '<iframe width="1600" height="900" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+                res = '<h1>No results found</h1><br><iframe width="1600" height="900" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
 
             #on récupère les réponses
             return res

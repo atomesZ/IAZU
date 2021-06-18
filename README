@@ -1,3 +1,37 @@
+To run it locally:
+
+cd src
+
+docker-compose up --build
+
+then connect to localhost
+
+you can use tunneling to make it available on the web as a POC (instead of reverse proxy nginx):
+
+    ngrok http 80
+
+
+
+To run it in the cloud:
+
+cd src
+
+# build and push container to registry
+./build_and_push.sh
+
+then in docker container instance, create an instance with env variables:
+
+
+SUB_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxx"
+LOCATION = "cloud"
+
+
+
+
+
+
+OLD:
+
 load the luis server:
     API_KEY="xxxxxxxxxxxxxxxxxxxxxxx" ./load_container.sh
 

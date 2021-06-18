@@ -12,7 +12,7 @@ COPY ./data/ ./data/
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 80
 
 CMD [ "python3", "server.py"]
 
